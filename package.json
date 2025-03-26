@@ -1,0 +1,23 @@
+{
+  "name": "15",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^9.0.1",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "faker": "^6.6.6",
+    "mongoose": "^8.6.3",
+    "nodemon": "^3.1.7",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1"
+  }
+}
