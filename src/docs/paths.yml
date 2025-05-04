@@ -1,0 +1,85 @@
+paths:
+  /api/sessions/login:
+    post:
+      summary: Inicia sesion y almacena datos de la sesion en un cookie
+      responses:
+        '200':
+          description: Sesion iniciada correctamente
+        '401':
+          description: Credenciales invalidas
+        '500':
+          description: Error
+      tags: [Sessions]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+  /api/sessions/current:
+    get:
+      summary: Obtiene del usuario logueado los datos de la sesion
+      responses:
+        '200':
+          description: Sesion iniciada correctamente
+        '401':
+          description: Credenciales invalidas
+        '500':
+          description: Error
+  /api/users/register:
+    post:
+      summary: Crea un nuevo usuario  
+      responses:
+        201:
+          description: Creado correctamente
+          content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/userRegister'   
+        400:
+          description: Bad request
+        500:
+          description: Error
+          content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/userRegister'
+      tags: [Users]
+      requestBody:
+        required: true                            
+  /api/users:
+    get:
+      summary: Obtiene todos los usuarios
+      responses:
+        '200':
+          description: Obtenido correctamente
+        '500':
+          description: Error
+      tags: [Users]
+      security:   
+        - ApiKeyAuth: []  
+  /api/users/{id}:
+    get:
+      summary: Obtiene un usuario por su ID se requiere iniciar sesion
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID del usuario
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Obtenido correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/parameters/schemas/userById'
+        '404':
+          description: ID invalido
+      tags: [Users]
